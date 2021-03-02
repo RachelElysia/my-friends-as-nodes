@@ -1,0 +1,76 @@
+Test queue file 
+    >>> from queue import Queue
+    >>> q = Queue()
+    >>> q.enqueue("apple")
+    >>> q.enqueue("berry")
+    >>> q.dequeue()
+    'apple'
+
+Check friends graph. File creates nodes and a graph. 
+    >>> import friends
+
+Test PersonNode class
+    >>> leia = friends.PersonNode("Leia")
+    >>> han = friends.PersonNode("Han")
+
+Test FriendGraph class
+    >>> star_friends = friends.FriendGraph()
+    >>> star_friends.add_people([leia, han])
+    >>> star_friends.set_friends(leia, han)
+    >>> star_friends.are_connected(leia, han)
+    checking <PersonNode: Leia>
+    added to queue: <PersonNode: Han>
+    checking <PersonNode: Han>
+    True
+
+Check sample data
+    >>> friends.friends.are_connected(friends.harry, friends.trevor) # doctest: +ELLIPSIS
+    checking <PersonNode: Harry>
+    added to queue: <PersonNode: ...
+    checking <PersonNode: ...
+    added to queue: <PersonNode: ...
+    checking <PersonNode: ...
+    added to queue: <PersonNode: ...
+    checking <PersonNode: ...
+    True
+
+    >>> friends.friends.are_connected(friends.harry, friends.goyle) # doctest: +ELLIPSIS
+    checking <PersonNode: Harry>
+    added to queue: <PersonNode: ...
+    checking <PersonNode: ...
+    added to queue: <PersonNode: ...
+    checking <PersonNode: ...
+    added to queue: <PersonNode: ...
+    checking <PersonNode: ...
+    False
+
+Check the flights 
+    >>> import flights
+    Cheapest paths from Atlanta {Atlanta: 0, Houston: 200, LA: 250, Oakland: 275, Seattle: 450, Denver: 450}
+    >>> atlanta = flights.City("Atlanta")
+    >>> oakland = flights.City("Oakland")
+    >>> houston = flights.City("Houston")
+    >>> la = flights.City("LA")
+    >>> seattle = flights.City("Seattle")
+    >>> denver = flights.City("Denver")
+
+    >>> flights = flights.Flights([atlanta, oakland, houston, la, seattle, denver])
+
+    >>> atlanta.add_flight(oakland, 400)
+    >>> atlanta.add_flight(houston, 200)
+    >>> atlanta.add_flight(la, 250)
+    >>> la.add_flight(oakland, 100)
+    >>> la.add_flight(seattle, 200)
+    >>> houston.add_flight(la, 200)
+    >>> houston.add_flight(denver, 250)
+    >>> houston.add_flight(oakland, 75)
+    >>> denver.add_flight(oakland, 150)
+    >>> denver.add_flight(la, 150)
+    >>> seattle.add_flight(oakland, 100)
+    >>> r = flights.cheapest(atlanta)
+    >>> assert r[houston] == 200
+    >>> assert r[seattle] == 450
+
+Check networkx file
+    >>> import flights_nx
+    Cheapest Atlanta -> Oakland 1
