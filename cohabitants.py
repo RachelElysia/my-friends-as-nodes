@@ -140,7 +140,8 @@ sarah_r = PersonNode("Sarah Rose")
 jay = PersonNode("Jay Snow")
 
 cohabitants = CohabitantGraph()
-cohabitants.add_people([harry, hermione, ron, neville, fred, draco, crabbe, goyle])
+cohabitants.add_people([rachel, steven, jeff, sara, gabe, julie, mari, troy, josh,
+    shigs, kim, sonam, harman, ashley, sean, sarah_p, olivia, christie, sarah_r, jay])
 
 cohabitants.set_cohabitants(rachel, steven)
 cohabitants.set_cohabitants(rachel, josh)
